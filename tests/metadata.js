@@ -3,11 +3,12 @@ var ServiceMetadata = require('../lib/metadata').ServiceMetadata
 
 var schema = require('./schema2')
 describe('metadata', () => {
-    it.skip('xml', (done) => {
+    it('xml', (done) => {
         var m = ServiceMetadata.processMetadataJson(schema)
 
+        console.log(m);
         var fs = require('fs');
-        fs.writeFile("./metadata.xml", m, function(err) {
+        fs.writeFile("./metadata2.xml", m, function(err) {
             if (err) {
                 return console.log(err);
             }
