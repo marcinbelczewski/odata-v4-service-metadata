@@ -28,7 +28,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "extend": "^3.0.0",
-    "odata-v4-metadata": "^0.1.2"
+    "odata-v4-metadata": "https://github.com/marcinbelczewski/odata-v4-metadata.git"
   },
   "devDependencies": {
     "@types/express": "^4.0.33",

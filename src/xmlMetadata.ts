@@ -378,6 +378,7 @@ export class XmlMetadata {
                 .addAttribute(entityType, entitySet.entityType);
 
             this.buildAnnotations(xml, entitySet.annotations)
+            this.buildNavPropertyBindings(xml, entitySet.navigationPropertyBindings)
 
             xml.endElementInline();
         })
@@ -418,7 +419,22 @@ export class XmlMetadata {
         })
     }
     
+    buildNavPropertyBindings(xml, bindings) {
+        bindings && bindings.forEach(binding => {
+            var BindingElement = xml.declareElement('NavigationPropertyBinding');
 
+            xml.startElement(BindingElement)
+
+            var attributes = Object.keys(this.bindingAttributes);
+            attributes.forEach(prop => {
+                if (typeof binding[prop] !== 'undefined' && binding[prop] !== null) {
+                    var attr = xml.declareAttribute(this.bindingAttributes[prop].name)
+                    xml.addAttribute(attr, binding[prop].toString());
+                }
+            });
+            xml.endElementInline();
+        })        
+    }
 
     buildSchemaAnnotations(xml, schemaAnnotations) {
         schemaAnnotations && schemaAnnotations.forEach(schemaAnnotation => {
@@ -487,6 +503,10 @@ export class XmlMetadata {
         term: { name: 'Term' },
         qualifier: { name: 'Qualifier' },
         path: { name: 'Path' },
+    }
+    bindingAttributes: Object = {
+        path: { name: 'Path' },
+        target: { name: 'Target' }
     }
     annotationTypes: Object = {
         Binary: { name: 'Binary', valueField: 'binary' },

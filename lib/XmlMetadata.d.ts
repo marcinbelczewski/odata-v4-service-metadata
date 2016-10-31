@@ -29,9 +29,11 @@ export declare class XmlMetadata {
     buildEntitySets(xml: any, entitySets: any): void;
     buildActionImports(xml: any, actionImports: any): void;
     buildFunctionImports(xml: any, functionImports: any): void;
+    buildNavPropertyBindings(xml: any, bindings: any): void;
     buildSchemaAnnotations(xml: any, schemaAnnotations: any): void;
     buildAnnotations(xml: any, annotations: any): void;
     buildCollectionAnnotation(xml: any, value: any, annotConfig: any, annotation: any): void;
     annotationAttributes: Object;
+    bindingAttributes: Object;
     annotationTypes: Object;
 }
